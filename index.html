@@ -1112,55 +1112,37 @@ html, body {
 
 
 /* ─── PERFORMANCE ────────────────────────────────────────────────────── */
-#performance { background: var(--bg); padding: 96px 6%; }
-
-.perf-head { text-align: center; margin-bottom: 72px; }
-
-.perf-grid {
-  /* Alterado de 4 para 3 colunas */
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--bg-dark);
+#performance{background:var(--bg);padding:96px 6%}
+.perf-head{text-align:center;margin-bottom:72px}
+.perf-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--bg-dark);
 }
-
-.perf-cell {
-  background: var(--bg);
-  padding: 44px 28px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  transition: background .3s;
+.perf-cell{
+  background:var(--bg);padding:44px 28px;text-align:center;
+  position:relative;overflow:hidden;
+  transition:background .3s;
 }
-
-/* Responsividade: Empilha em telas menores */
-@media screen and (max-width: 768px) {
-  .perf-grid {
-    grid-template-columns: 1fr; /* 1 coluna no mobile */
-  }
+.perf-cell:hover{background:var(--sky-soft)}
+.perf-cell::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:transparent;transition:background .3s;
 }
-
-/* --- Mantenha o restante das suas classes (perf-val, perf-lbl, etc.) iguais --- */
-.perf-cell:hover { background: var(--sky-soft); }
-.perf-cell::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: transparent; transition: background .3s;
+.perf-cell:hover::before{background:var(--sky)}
+.perf-val{
+  font-family:var(--font-condensed);
+  font-size:clamp(2.2rem,3.5vw,3rem);font-weight:700;
+  color:var(--navy);line-height:1;margin-bottom:6px;
 }
-.perf-cell:hover::before { background: var(--sky); }
-.perf-val {
-  font-family: var(--font-condensed);
-  font-size: clamp(2.2rem, 3.5vw, 3rem); font-weight: 700;
-  color: var(--navy); line-height: 1; margin-bottom: 6px;
+.perf-unit{font-size:.55em;color:var(--sky);vertical-align:super}
+.perf-lbl{
+  font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-soft);margin-bottom:16px;
 }
-.perf-unit { font-size: .55em; color: var(--sky); vertical-align: super; }
-.perf-lbl {
-  font-size: .75rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--ink-soft); margin-bottom: 16px;
-}
-.perf-track { height: 2px; background: var(--bg-dark); max-width: 64px; margin: 0 auto; overflow: hidden; }
-.perf-fill { height: 100%; background: linear-gradient(90deg, var(--sky), var(--blue)); width: 0; transition: width 1.6s var(--ease); }
-.perf-fill.on { width: var(--w); }
+.perf-track{height:2px;background:var(--bg-dark);max-width:64px;margin:0 auto;overflow:hidden}
+.perf-fill{height:100%;background:linear-gradient(90deg,var(--sky),var(--blue));width:0;transition:width 1.6s var(--ease)}
+.perf-fill.on{width:var(--w)}
 
 /* ─── TESTIMONIALS ───────────────────────────────────────────────────── */
 #testimonials{background:var(--navy-deep);padding:96px 6%}
@@ -1817,20 +1799,23 @@ section{padding-left:clamp(16px,5vw,80px);padding-right:clamp(16px,5vw,80px)}
 
 <!-- ── HERO ───────────────────────────────────────────────────────────── -->
 <section id="hero">
-  <video autoplay muted loop playsinline class="hero-video">
-  <source media="(min-width: 769px)" src="midias/Video Banner site talafate.mp4">
-  <source media="(max-width: 768px)" src="midias/Video Banner site talafate.mp4">
-</video>
+  <video 
+    autoplay 
+    muted 
+    loop 
+    playsinline 
+    poster="midias/hero-poster.jpg" 
+    preload="metadata" 
+    class="hero-video">
+      <source media="(min-width: 769px)" src="midias/Video-Banner-Desktop.mp4" type="video/mp4">
+      <source media="(max-width: 768px)" src="midias/Video-Banner-Mobile.mp4" type="video/mp4">
+  </video>
   
   <div class="hero-overlay"></div>
   
-  <div class="hero-grid"></div>
-
   <div class="hero-content">
     <div class="hero-left">
-      <div class="hero-badge">
-        <span class="dot"></span> Exclusive · Other Side Technology
-      </div>
+      <div class="hero-badge"><span class="dot"></span> Exclusive · Other Side Technology</div>
       <h1 class="hero-h1">Reach <em>Beyond Limits</em></h1>
       <p class="hero-sub">The articulated aerial basket with exclusive Other Side Technology delivers maximum reach, operational safety, and unmatched field versatility.</p>
       
@@ -1842,27 +1827,7 @@ section{padding-left:clamp(16px,5vw,80px);padding-right:clamp(16px,5vw,80px)}
       </div>
     </div>
   </div>
-
-  <div class="hero-marquee">
-    <div class="hero-marquee-track">
-      <span>Maximum Reach</span>
-      <span>Operational Safety</span>
-      <span>Field Versatility</span>
-      <span>Other Side Technology</span>
-      
-      <span>Maximum Reach</span>
-      <span>Operational Safety</span>
-      <span>Field Versatility</span>
-      <span>Other Side Technology</span>
-      
-    </div>
-  </div>
-
-  <div class="hero-scroll-cue">
-    <span>Scroll</span>
-    <div class="scroll-chevron"></div>
-  </div>
-</section>
+  </section>
 
 <!-- ── VIDEO ──────────────────────────────────────────────────────────── -->
 <section id="video-section">
