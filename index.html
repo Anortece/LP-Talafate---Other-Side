@@ -1112,37 +1112,97 @@ html, body {
 
 
 /* ─── PERFORMANCE ────────────────────────────────────────────────────── */
-#performance{background:var(--bg);padding:96px 6%}
-.perf-head{text-align:center;margin-bottom:72px}
-.perf-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:var(--bg-dark);
+#performance {
+  background: var(--bg);
+  padding: 96px 6%;
 }
-.perf-cell{
-  background:var(--bg);padding:44px 28px;text-align:center;
-  position:relative;overflow:hidden;
-  transition:background .3s;
+
+.perf-head {
+  text-align: center;
+  margin-bottom: 72px;
 }
-.perf-cell:hover{background:var(--sky-soft)}
-.perf-cell::before{
-  content:'';
-  position:absolute;top:0;left:0;right:0;height:3px;
-  background:transparent;transition:background .3s;
+
+.perf-grid {
+  display: flex !important;           /* Força o Flexbox */
+  flex-direction: row !important;     /* Garante a direção horizontal */
+  flex-wrap: nowrap !important;       /* Impede que quebrem de linha */
+  justify-content: space-between;     /* Espalha os itens uniformemente */
+  background: var(--bg-dark);
+  width: 100%;
+  gap: 1px;                           /* Cria a linha divisória */
 }
-.perf-cell:hover::before{background:var(--sky)}
-.perf-val{
-  font-family:var(--font-condensed);
-  font-size:clamp(2.2rem,3.5vw,3rem);font-weight:700;
-  color:var(--navy);line-height:1;margin-bottom:6px;
+
+.perf-cell {
+  flex: 1;                            /* Faz cada um ocupar o mesmo tamanho */
+  background: var(--bg);
+  padding: 44px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: background .3s;
 }
-.perf-unit{font-size:.55em;color:var(--sky);vertical-align:super}
-.perf-lbl{
-  font-size:.75rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--ink-soft);margin-bottom:16px;
+
+.perf-cell:hover {
+  background: var(--sky-soft);
 }
-.perf-track{height:2px;background:var(--bg-dark);max-width:64px;margin:0 auto;overflow:hidden}
-.perf-fill{height:100%;background:linear-gradient(90deg,var(--sky),var(--blue));width:0;transition:width 1.6s var(--ease)}
-.perf-fill.on{width:var(--w)}
+
+.perf-cell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: transparent;
+  transition: background .3s;
+}
+
+.perf-cell:hover::before {
+  background: var(--sky);
+}
+
+.perf-val {
+  font-family: var(--font-condensed);
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.perf-unit {
+  font-size: .55em;
+  color: var(--sky);
+  vertical-align: super;
+}
+
+.perf-lbl {
+  font-size: .75rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+
+.perf-track {
+  height: 2px;
+  background: var(--bg-dark);
+  max-width: 64px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.perf-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sky), var(--blue));
+  width: 0;
+  transition: width 1.6s var(--ease);
+}
+
+.perf-fill.on {
+  width: var(--w);
+}
 
 /* ─── TESTIMONIALS ───────────────────────────────────────────────────── */
 #testimonials{background:var(--navy-deep);padding:96px 6%}
@@ -1311,6 +1371,11 @@ html, body {
     aspect-ratio: 4 / 3; 
   }
 }
+
+  .perf-grid {
+    grid-template-columns: 1fr;
+  }
+
 
 /* ─── CTA ────────────────────────────────────────────────────────────── */
 #cta-band{
@@ -1799,23 +1864,20 @@ section{padding-left:clamp(16px,5vw,80px);padding-right:clamp(16px,5vw,80px)}
 
 <!-- ── HERO ───────────────────────────────────────────────────────────── -->
 <section id="hero">
-  <video 
-    autoplay 
-    muted 
-    loop 
-    playsinline 
-    poster="midias/hero-poster.jpg" 
-    preload="metadata" 
-    class="hero-video">
-      <source media="(min-width: 769px)" src="midias/Video Banner site talafate.mp4" type="video/mp4">
-      <source media="(max-width: 768px)" src="midias/Video Banner site talafate.mp4" type="video/mp4">
-  </video>
+  <video autoplay muted loop playsinline class="hero-video">
+  <source media="(min-width: 769px)" src="midias/Video Banner site talafate.mp4">
+  <source media="(max-width: 768px)" src="midias/Video Banner site talafate.mp4">
+</video>
   
   <div class="hero-overlay"></div>
   
+  <div class="hero-grid"></div>
+
   <div class="hero-content">
     <div class="hero-left">
-      <div class="hero-badge"><span class="dot"></span> Exclusive · Other Side Technology</div>
+      <div class="hero-badge">
+        <span class="dot"></span> Exclusive · Other Side Technology
+      </div>
       <h1 class="hero-h1">Reach <em>Beyond Limits</em></h1>
       <p class="hero-sub">The articulated aerial basket with exclusive Other Side Technology delivers maximum reach, operational safety, and unmatched field versatility.</p>
       
@@ -1827,7 +1889,27 @@ section{padding-left:clamp(16px,5vw,80px);padding-right:clamp(16px,5vw,80px)}
       </div>
     </div>
   </div>
-  </section>
+
+  <div class="hero-marquee">
+    <div class="hero-marquee-track">
+      <span>Maximum Reach</span>
+      <span>Operational Safety</span>
+      <span>Field Versatility</span>
+      <span>Other Side Technology</span>
+      
+      <span>Maximum Reach</span>
+      <span>Operational Safety</span>
+      <span>Field Versatility</span>
+      <span>Other Side Technology</span>
+      
+    </div>
+  </div>
+
+  <div class="hero-scroll-cue">
+    <span>Scroll</span>
+    <div class="scroll-chevron"></div>
+  </div>
+</section>
 
 <!-- ── VIDEO ──────────────────────────────────────────────────────────── -->
 <section id="video-section">
@@ -1897,6 +1979,18 @@ section{padding-left:clamp(16px,5vw,80px);padding-right:clamp(16px,5vw,80px)}
       <div class="gal-bg" style="background-image:url('midias/g6.jpg')"></div>
       <div class="gal-over"><div class="gal-plus">+</div></div>
     </div>
+    <div class="gal-item">
+      <div class="gal-bg" style="background-image:url('midias/g7.png')"></div>
+      <div class="gal-over"><div class="gal-plus">+</div></div>
+    </div>
+    <div class="gal-item">
+      <div class="gal-bg" style="background-image:url('midias/g8.png')"></div>
+      <div class="gal-over"><div class="gal-plus">+</div></div>
+    </div>
+    <div class="gal-item">
+      <div class="gal-bg" style="background-image:url('midias/g9.png')"></div>
+      <div class="gal-over"><div class="gal-plus">+</div></div>
+    </div>
   </div>
 </section>
 
@@ -1945,7 +2039,7 @@ section{padding-left:clamp(16px,5vw,80px);padding-right:clamp(16px,5vw,80px)}
     </div>
     
     <div class="tech-copy">
-      <h2 class="s-title">LI 10.000<br><em>Other Side</em></h2>
+      <h2 class="s-title">LA/LI 10.000<br><em>Other Side</em></h2>
       <p class="tech-kicker">Designed for versatility, our 10-meter models feature independent infinite rotation on both lower and upper booms.</p>
       
       <div class="specs-infographic">
@@ -1969,7 +2063,7 @@ section{padding-left:clamp(16px,5vw,80px);padding-right:clamp(16px,5vw,80px)}
     </div>
     
     <div class="tech-copy">
-      <h2 class="s-title">LI 14.000<br><em>Other Side</em></h2>
+      <h2 class="s-title">LA/LI 14.000<br><em>Other Side</em></h2>
       <p class="tech-kicker">A new concept for working at heights, providing unmatched flexibility in complex industrial environments.</p>
       
       <div class="specs-infographic">
@@ -1985,7 +2079,7 @@ section{padding-left:clamp(16px,5vw,80px);padding-right:clamp(16px,5vw,80px)}
 <section id="model-la-li-16000" class="tech-section">
   <div class="tech-grid">
     <div class="tech-img-wrap reveal from-left">
-      <div class="tech-img" style="background-image: url('midias/modelo16000.jpeg');">
+      <div class="tech-img" style="background-image: url('midias/modelo16000.png');">
         <div class="tc-corner tl"></div>
         <div class="tc-corner br"></div>
       </div>
@@ -1993,7 +2087,7 @@ section{padding-left:clamp(16px,5vw,80px);padding-right:clamp(16px,5vw,80px)}
     </div>
     
     <div class="tech-copy">
-      <h2 class="s-title">LI 16.000<br><em>Other Side</em></h2>
+      <h2 class="s-title">LA/LI 16.000<br><em>Other Side</em></h2>
       <p class="tech-kicker">The most versatile aerial bucket on the market. Heavy-duty design with telescopic boom and parallelogram lift for maximum performance.</p>
       
       <div class="specs-infographic">
@@ -2161,23 +2255,22 @@ section{padding-left:clamp(16px,5vw,80px);padding-right:clamp(16px,5vw,80px)}
   
   <div class="perf-grid">
     <div class="perf-cell">
-      <div class="perf-val"><span class="counter" data-to="16"></span><span class="perf-unit">m</span></div>
+      <div class="perf-val"><span class="counter" data-to="16">16</span><span class="perf-unit">m</span></div>
       <div class="perf-lbl">Working Height</div>
       <div class="perf-track"><div class="perf-fill" style="--w:82%"></div></div>
     </div>
-    
     <div class="perf-cell">
-      <div class="perf-val"><span class="perf-unit">Double Insulation</span></div>
-      <div class="perf-lbl">Safety-certified for energized grids.</div>
+      <div class="perf-val"><span class="perf-unit">Double</span></div>
+      <div class="perf-lbl">Insulation</div>
       <div class="perf-track"><div class="perf-fill" style="--w:95%"></div></div>
     </div>
-    
     <div class="perf-cell">
-      <div class="perf-val"><span class="counter" data-to="360">0</span><span class="perf-unit">°</span></div>
-      <div class="perf-lbl">Continuous Rotation</div>
+      <div class="perf-val"><span class="counter" data-to="360">360</span><span class="perf-unit">°</span></div>
+      <div class="perf-lbl">Rotation</div>
       <div class="perf-track"><div class="perf-fill" style="--w:72%"></div></div>
     </div>
-  </div> </section>
+  </div>
+</section>
 
 <!-- ── TESTIMONIALS ───────────────────────────────────────────────────── -->
 <section id="testimonials">
